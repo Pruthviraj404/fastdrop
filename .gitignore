@@ -12,6 +12,7 @@ uploads/*
 # VSCode settings
 .vscode/
 
+.deployment
 # Ignore secret or sensitive files
 .env
 *.key
