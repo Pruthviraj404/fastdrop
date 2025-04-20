@@ -1,0 +1,22 @@
+e virtual environment
+venv/
+
+# Ignore system files
+__pycache__/
+*.pyc
+
+# Ignore uploads but keep the folder
+uploads/*
+!uploads/.gitkeep
+
+# VSCode settings
+.vscode/
+
+# Ignore secret or sensitive files
+.env
+*.key
+*.pem
+*.p12
+*.crt
+*.json
+config/secrets.yaml
