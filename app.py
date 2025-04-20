@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Replace with a secure secret key
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Limit upload size to 16MB
+app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024  # Limit upload size to 16MB
 
 # Dictionary to map unique codes to filenames
 codes = {}
