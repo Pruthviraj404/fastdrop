@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download File | QuickShare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Download a File</h2>
+        <form method="POST">
+            <input type="text" name="code" placeholder="Enter File Code" required>
+            <br>
+            <button type="submit">Fetch File</button>
+        </form>
+
+        {% if filename %}
+            <div class="code-box">
+                <a href="{{ url_for('serve_file', filename=filename) }}">Click here to download {{ filename }}</a>
+            </div>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p style="color:red;">{{ messages[0] }}</p>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>

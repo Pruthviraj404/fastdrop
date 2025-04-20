@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File | QuickShare</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #00adb5;
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+            border: 2px dashed #555;
+            padding: 10px;
+            background-color: #2a2a2a;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #00adb5;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #01949d;
+        }
+
+        .code-box {
+            background-color: #2f2f2f;
+            color: #00ffcc;
+            padding: 10px;
+            margin: 20px 0;
+            border: 1px solid #00adb5;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        a button {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        p {
+            color: #ccc;
+        }
+
+        p[style] {
+            color: red !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload a File</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" required>
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+
+        {% if code %}
+            <div class="code-box">
+                Your File Code: {{ code }}
+            </div>
+            <p>Go to download page and enter this code to get your file.</p>
+            <a href="{{ url_for('download') }}">
+                <button>Go to Download Page</button>
+            </a>
+        {% endif %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <p style="color:red;">{{ messages[0] }}</p>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
