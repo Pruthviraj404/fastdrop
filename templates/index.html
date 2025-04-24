@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag for responsiveness -->
     <title>Upload File | QuickShare</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
@@ -15,23 +16,25 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 60px 50px;
+            padding: 40px 30px;
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
-            width: 550px;
+            width: 90%; /* Makes the container take 90% of the screen width */
+            max-width: 550px; /* Maximum width for larger screens */
         }
 
         h2 {
             margin-bottom: 30px;
             color: #a970ff;
-            font-size: 30px;
+            font-size: 28px;
         }
 
         .file-upload-wrapper {
@@ -88,7 +91,6 @@
             color: #aaffee;
             padding: 15px 20px;
             margin-top: 30px;
-         
             border-radius: 12px;
             font-size: 18px;
             font-weight: bold;
@@ -141,6 +143,65 @@
             color: #ff6a6a !important;
             font-weight: bold;
             margin-top: 15px;
+        }
+
+        /* Mobile-first design adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .upload-btn {
+                width: 80%;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .file-upload-label {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+
+            .code-box {
+                font-size: 16px;
+            }
+
+            .download-section a button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* Smaller screens (e.g., mobile) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .upload-btn {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .file-upload-label {
+                font-size: 12px;
+                padding: 10px 12px;
+            }
+
+            .code-box {
+                font-size: 14px;
+            }
+
+            .download-section a button {
+                font-size: 12px;
+                padding: 8px 18px;
+            }
         }
     </style>
 </head>

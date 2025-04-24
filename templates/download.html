@@ -15,6 +15,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
@@ -25,7 +26,8 @@
             border-radius: 25px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
-            width: 450px;
+            width: 90%; /* Makes the container take 90% of the screen width */
+            max-width: 450px; /* Maximum width for larger screens */
         }
 
         h2 {
@@ -98,6 +100,56 @@
             color: #ff6a6a !important;
             font-weight: bold;
             margin-top: 15px;
+        }
+
+        /* Mobile-first design adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            input[type="text"] {
+                padding: 12px 18px;
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .code-box {
+                font-size: 16px;
+            }
+        }
+
+        /* Smaller screens (e.g., mobile) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            input[type="text"] {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .code-box {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
