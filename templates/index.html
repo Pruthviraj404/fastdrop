@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
+            background: linear-gradient(135deg, #0b2473, #0a4c79);
             color: #fff;
             display: flex;
             justify-content: center;
@@ -18,65 +18,129 @@
         }
 
         .container {
-            background-color: #1e1e1e;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 50px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
             text-align: center;
-            width: 400px;
+            width: 550px;
         }
 
         h2 {
-            margin-bottom: 25px;
-            color: #00adb5;
+            margin-bottom: 30px;
+            color: #a970ff;
+            font-size: 30px;
         }
 
-        input[type="file"] {
-            margin: 15px 0;
-            border: 2px dashed #555;
-            padding: 10px;
-            background-color: #2a2a2a;
-            color: #fff;
-            border-radius: 5px;
+        .file-upload-wrapper {
+            position: relative;
+            margin-bottom: 30px;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #00adb5;
-            border: none;
-            color: #fff;
-            font-weight: bold;
-            border-radius: 8px;
+        .file-upload-wrapper input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            z-index: 10;
             cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: #01949d;
-        }
-
-        .code-box {
-            background-color: #2f2f2f;
-            color: #00ffcc;
-            padding: 10px;
-            margin: 20px 0;
-            border: 1px solid #00adb5;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        a button {
-            margin-top: 10px;
+            height: 100%;
             width: 100%;
         }
 
-        p {
+        .file-upload-label {
+            display: block;
+            border: 2px dashed #a970ff;
+            padding: 16px 20px;
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+            font-size: 16px;
             color: #ccc;
+            transition: 0.3s ease;
+        }
+
+        .file-upload-label:hover {
+            background-color: rgba(169, 112, 255, 0.1);
+            color: #fff;
+        }
+
+        .upload-btn {
+            width: 50%;
+            padding: 20px;
+            background: linear-gradient(145deg, #3ff2f2, #a970ff);
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: linear-gradient(145deg, #6b2bd6, #9655ff);
+            transform: scale(1.03);
+        }
+
+        .code-box {
+            background: linear-gradient(135deg, #3d2e59, #432f61);
+            color: #aaffee;
+            padding: 15px 20px;
+            margin-top: 30px;
+         
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #55faef;
+            }
+            to {
+                box-shadow: 0 0 15px #70ffe7;
+            }
+        }
+
+        p.info {
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .download-section {
+            margin-top: 40px;
+        }
+
+        .download-section h3 {
+            color: #a970ff;
+            margin-bottom: 10px;
+        }
+
+        .download-section a button {
+            padding: 12px 22px;
+            background: transparent;
+            border: 2px solid #a970ff;
+            color: #a970ff;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s ease;
+        }
+
+        .download-section a button:hover {
+            background: #a970ff;
+            color: #fff;
+            transform: translateY(-2px);
         }
 
         p[style] {
-            color: red !important;
+            color: #ff6a6a !important;
             font-weight: bold;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -84,20 +148,26 @@
     <div class="container">
         <h2>Upload a File</h2>
         <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <br>
-            <button type="submit">Upload</button>
+            <div class="file-upload-wrapper">
+                <input type="file" name="file" id="file" required>
+                <label for="file" class="file-upload-label">📁 Click to choose a file</label>
+            </div>
+            <button type="submit" class="upload-btn">⬆ Upload</button>
         </form>
 
         {% if code %}
             <div class="code-box">
-                Your File Code: {{ code }}
+                🔐 Your File Code: {{ code }}
             </div>
-            <p>Go to download page and enter this code to get your file.</p>
-            <a href="{{ url_for('download') }}">
-                <button>Go to Download Page</button>
-            </a>
+            <p class="info">Use this code on the download page to retrieve your file.</p>
         {% endif %}
+
+        <div class="download-section">
+            <h3>Already have a code?</h3>
+            <a href="{{ url_for('download') }}">
+                <button>➡ Go to Download Page</button>
+            </a>
+        </div>
 
         {% with messages = get_flashed_messages() %}
             {% if messages %}
